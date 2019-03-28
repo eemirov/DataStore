@@ -1,0 +1,8 @@
+/.vs/
+/DataStore.Web/bin
+/DataStore.Web/obj
+/DataStore.Core/bin
+/DataStore.Core/obj
+/DataStore.Application/bin
+/DataStore.Application/obj
+/packages/
