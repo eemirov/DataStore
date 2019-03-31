@@ -1,0 +1,39 @@
+﻿
+<div class="page-header">
+	<h1> Order </h1>
+</div>
+<div class="panel">
+	<form name="form" ng-submit="vm.addOrder()" role="form">
+		<div class="form-group" ng-class="{ 'has-error': form.ordername.$dirty && form.ordername.$error.required }">
+			<label for="ordername">Order Name</label>
+			<input type="text" name="ordername" id="ordername" class="form-control" ng-model="vm.orderName" required placeholder="Enter name"/>
+			<span ng-show="form.ordername.$dirty && form.ordername.$error.required" class="help-block">Order name is required</span>
+		</div>
+		<div class="form-group" ng-class="{ 'has-error': form.ordertype.$dirty && form.ordertype.$error.required }">
+			<label for="ordertype">Type</label>
+			<select type="text" name="ordertype" id="ordertype" class="form-control" ng-model="vm.OrderType" required>
+				<option ng-repeat="option in vm.data.OrderTypes" value="{{option.Value}}">{{option.Text}}</option>
+			</select>
+			<span ng-show="form.ordertype.$dirty && form.ordertype.$error.required" class="help-block">Order name is required</span>
+		</div>
+		<div class="form-group" ng-class="{ 'has-error': form.orderdate.$dirty && form.orderdate.$error.required }">
+			<label for="orderdate">Order Date</label>
+			<input type="text" name="orderdate" id="orderdate" class="form-control" ng-pattern="/\d\d/\d\d/\d\d\d\d/" ng-model="vm.orderDate" placeholder="Enter date" required />
+			<span ng-show="form.orderdate.$dirty && form.orderdate.$error.required" class="help-block">Order date is required</span>
+		</div>
+		
+		<div class="form-group" ng-class="{ 'has-error': form.gender.$dirty && form.gender.$error.required }">
+			<label for="orderdate">Gender</label>
+			<div ng-repeat="option in vm.data.GenderTypes">
+				<input type="radio" name="gender" value="{{option.Value}}" ng-model="vm.Gender"/> {{option.Text}}
+			</div>
+			<span ng-show="form.gender.$dirty && form.gender.$error.required" class="help-block">Order date is required</span>
+		</div>
+		
+		<div class="form-group" ng-class="{ 'has-error': form.orderisactive.$dirty && form.orderisactive.$error.required }">
+			<label for="ordername">Active</label>
+			<input type="checkbox" name="orderisactive" id="orderisactive" class="form-control" ng-model="vm.orderIsActive" style="width: 10px;"/>
+		</div>
+		<input type="submit" class="form-control" value="Submit"/>
+	</form>
+</div>

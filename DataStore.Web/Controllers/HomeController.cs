@@ -10,7 +10,7 @@ namespace DataStore.Web.Controllers
 	{
 		public ActionResult Index()
 		{
-			return Redirect("/");
+			return Redirect("/index.html");
 		}
 	}
 }

@@ -7,13 +7,10 @@ using DataStore.Core.Enums.Attributes;
 
 namespace DataStore.Core.Enums
 {
-	public enum OrderType
-	{
-		[EnumStringValue("Type 1")]
-		Type1,
-		[EnumStringValue("Type 2")]
-		Type2,
-		[EnumStringValue("Type 3")]
-		Type3
+	public enum EnumGender {
+		[EnumStringValue("Male")]
+		Male,
+		[EnumStringValue("Female")]
+		Female
 	}
 }

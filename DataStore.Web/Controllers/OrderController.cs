@@ -1,14 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
+using DataStore.Application.Services;
+using DataStore.Web.Models;
 
 namespace DataStore.Web.Controllers
 {
+	[RoutePrefix("api/order")]
 	public class OrderController : ApiController
 	{
+		private readonly IDataService _dataService;
+
+		public OrderController(IDataService dataService)
+		{
+			_dataService = dataService;
+		}
+
+		[Route("GetOrderData")]
+		[HttpPost]
+		public OrderDataModel GetOrderData()
+		{
+			var model = new OrderDataModel()
+			{
+				OrderTypes = _dataService.GetOrderTypes(),
+				GenderTypes = _dataService.GetGenderTypes()
+			};
+
+			return model;
+		}
+
 		// GET api/values
 		public IEnumerable<string> Get()
 		{

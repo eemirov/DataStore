@@ -3,23 +3,22 @@
 
 	angular
 		.module('app', ['ngRoute'])
-		.config(config)
-		.run(run);
+		.config(config);
 
 	config.$inject = ['$routeProvider'];
 	function config($routeProvider) {
 		$routeProvider
 			.when('/', {
 				controller: 'HomeController',
-				templateUrl: 'home/home.view.html',
+				templateUrl: 'Views/home.view.html',
 				controllerAs: 'vm'
 			})
 
-			.when('/listing', {
-				controller: 'ListingController',
-				templateUrl: 'login/listing.view.html',
-				controllerAs: 'vm'
-			})
+			//.when('/listing', {
+			//	controller: 'ListingController',
+			//	templateUrl: 'Views/listing.view.html',
+			//	controllerAs: 'vm'
+			//})
 
 			.otherwise({ redirectTo: '/' });
 	}

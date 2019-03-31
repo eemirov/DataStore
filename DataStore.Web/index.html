@@ -6,14 +6,24 @@
 	<link rel="stylesheet" href="/Content/Site.min.css" />
 </head>
 <body>
-	<div>
-		<div class="container">
-			<div class="col-sm-10 col-sm-offset-1">
-				<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-				<div ng-view></div>
-			</div>
+<div>
+	<div class="container">
+		<div class="col-sm-10 col-sm-offset-1">
+			<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+			<div ng-view></div>
 		</div>
 	</div>
-<script src="/Scripts/site.min.js"></script>
+</div>
+<script src="/Scripts/jquery-3.3.1.min.js"></script>
+<script src="/Scripts/angular.min.js"></script>
+<script src="/Scripts/angular-route.min.js"></script>
+<script src="/Scripts/bootstrap-datepicker.min.js"></script>
+
+	<script src="/Scripts/Custom/app.js"></script>
+	<script src="/Scripts/Custom/home/home.controller.js"></script>
+	<script src="/Scripts/Custom/services/flash.service.js"></script>
+	<script src="/Scripts/Custom/services/data.service.js"></script>
+	<script src="/Scripts/Custom/services/location.service.js"></script>
+<!--<script src="/Scripts/site.min.js"></script>-->
 </body>
 </html>

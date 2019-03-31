@@ -44,7 +44,8 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Enums\Attributes\EnumBaseValueAttribute.cs" />
     <Compile Include="Enums\Attributes\EnumStringValueAttribute.cs" />
-    <Compile Include="Enums\OrderType.cs" />
+    <Compile Include="Enums\EnumGender.cs" />
+    <Compile Include="Enums\EnumOrderType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
