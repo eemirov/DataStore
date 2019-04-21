@@ -1,58 +1,87 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
+using DataStore.Application.Model;
 using DataStore.Application.Services;
 using DataStore.Web.Models;
+using Newtonsoft.Json;
 
 namespace DataStore.Web.Controllers
 {
 	[RoutePrefix("api/order")]
 	public class OrderController : ApiController
 	{
-		private readonly IDataService _dataService;
+		private readonly IOrderDataService _dataService;
 
-		public OrderController(IDataService dataService)
+		public OrderController(IOrderDataService dataService)
 		{
 			_dataService = dataService;
 		}
 
-		[Route("GetOrderData")]
+		[Route("getOrderPageData")]
 		[HttpPost]
-		public OrderDataModel GetOrderData()
+		public IHttpActionResult GetOrderPageData()
 		{
-			var model = new OrderDataModel()
+			var result = new ResponseModel();
+			try
 			{
-				OrderTypes = _dataService.GetOrderTypes(),
-				GenderTypes = _dataService.GetGenderTypes()
-			};
-
-			return model;
+				result.Data = new OrderDataPageModel()
+				{
+					OrderTypes = _dataService.GetOrderTypes(),
+					GenderTypes = _dataService.GetGenderTypes()
+				}; ;
+			}
+			catch (Exception ex)
+			{
+				result.Errors.Add(new Error("Common", ex.Message));
+			}
+			return Json(result);
 		}
 
-		// GET api/values
-		public IEnumerable<string> Get()
+		[HttpPost]
+		[Route("getOrderList")]
+		public IHttpActionResult GetOrderList(string filter)
 		{
-			return new string[] { "value1", "value2" };
+			var result = new ResponseModel();
+			try
+			{
+				result.Data = _dataService.OrderList(filter);
+			}
+			catch (Exception ex)
+			{
+				result.Errors.Add(new Error("Common", ex.Message));
+			}
+			return Json(result);
 		}
 
-		// GET api/values/5
-		public string Get(int id)
+		[HttpPost]
+		[Route("addorupdateOrder")]
+		public IHttpActionResult AddOrUpdateOrder(OrderModel item)
 		{
-			return "value";
+			var result = new ResponseModel();
+			
+			try
+			{
+				if (!ModelState.IsValid)
+				{
+					result.Errors = ModelState.Where(x => x.Value.Errors.Any()).Select(x => new Error(x.Key.Replace("item.", ""), string.Join(", ", x.Value.Errors.Select(y => y.ErrorMessage)))).ToList();
+					return Json(result);
+				}
+
+				if (!result.Errors.Any())
+				{
+					_dataService.AddOrInsertOrder(item);
+				}
+
+			}
+			catch (System.Exception ex)
+			{
+				result.Errors.Add(new Error("Common", ex.Message));
+			}
+
+			return Json(result);
 		}
 
-		// POST api/values
-		public void Post([FromBody]string value)
-		{
-		}
-
-		// PUT api/values/5
-		public void Put(int id, [FromBody]string value)
-		{
-		}
-
-		// DELETE api/values/5
-		public void Delete(int id)
-		{
-		}
 	}
 }

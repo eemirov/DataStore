@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using DataStore.Core.Enums.Attributes;
+using DataStore.Application.Enums.Attributes;
 
 namespace DataStore.Application.Extentions
 {

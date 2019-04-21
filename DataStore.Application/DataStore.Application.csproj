@@ -34,7 +34,14 @@
     <Reference Include="Autofac, Version=4.9.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.9.2\lib\net45\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,13 +51,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Dto\OrderDto.cs" />
+    <Compile Include="Enums\Attributes\EnumBaseValueAttribute.cs" />
+    <Compile Include="Enums\Attributes\EnumStringValueAttribute.cs" />
+    <Compile Include="Enums\EnumDataValueType.cs" />
+    <Compile Include="Enums\EnumGender.cs" />
+    <Compile Include="Enums\EnumOrderType.cs" />
     <Compile Include="Extentions\EnumExtenstions.cs" />
     <Compile Include="Injection\AutofacDataModule.cs" />
+    <Compile Include="Model\Attributes\OrderFieldAttribute.cs" />
+    <Compile Include="Model\IOrderModel.cs" />
+    <Compile Include="Model\OrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\DataService.cs" />
+    <Compile Include="Services\OrderDataService.cs" />
     <Compile Include="Services\IApplicationService.cs" />
-    <Compile Include="Services\IDataService.cs" />
+    <Compile Include="Services\IOrderDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataStore.Core\DataStore.Core.csproj">
@@ -59,7 +74,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,6 +12,7 @@ var paths = {
 };
 
 paths.js = paths.webroot + "Scripts/**/*.js";
+paths.customJs = paths.webroot + "Scripts/Custom/**/*.js";
 paths.minJs = paths.webroot + "Scripts/**/*.min.js";
 paths.css = paths.webroot + "Content/**/*.css";
 paths.minCss = paths.webroot + "Content/**/*.min.css";
@@ -29,7 +30,15 @@ gulp.task("clean:css", function (cb) {
 gulp.task("clean", ["clean:js", "clean:css"]);
 
 gulp.task("min:js", function () {
-	return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
+	return gulp.src(
+		[
+			paths.webroot + "Scripts/jquery-3.3.1.js",
+			paths.webroot + "Scripts/angular.js",
+			paths.webroot + "Scripts/angular-route.js",
+			paths.webroot + "Scripts/bootstrap-datepicker.js",
+			paths.customJs,
+			"!" + paths.minJs]
+			, { base: "." })
 		.pipe(concat(paths.concatJsDest))
 		.pipe(uglify())
 		.pipe(gulp.dest("."));

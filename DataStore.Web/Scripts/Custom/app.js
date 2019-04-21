@@ -8,17 +8,17 @@
 	config.$inject = ['$routeProvider'];
 	function config($routeProvider) {
 		$routeProvider
-			.when('/', {
-				controller: 'HomeController',
-				templateUrl: 'Views/home.view.html',
+			.when('/addorder', {
+				controller: 'AddOrderController',
+				templateUrl: 'Views/addorder.view.html',
 				controllerAs: 'vm'
 			})
 
-			//.when('/listing', {
-			//	controller: 'ListingController',
-			//	templateUrl: 'Views/listing.view.html',
-			//	controllerAs: 'vm'
-			//})
+			.when('/', {
+				controller: 'OrderListController',
+				templateUrl: 'Views/orderlist.view.html',
+				controllerAs: 'vm'
+			})
 
 			.otherwise({ redirectTo: '/' });
 	}

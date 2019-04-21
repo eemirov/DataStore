@@ -17,7 +17,7 @@ namespace DataStore.Web
 
 			//Register your Web API controllers.  
 			builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-			builder.RegisterModule(new AutofacDataModule());
+			builder.RegisterModule(new AutofacDataModule(connectionString));
 
 			var container = builder.Build();
 
